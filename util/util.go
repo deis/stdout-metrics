@@ -59,24 +59,24 @@ func ParseNginxLog(message string) (map[string]interface{}, error) {
 			return nil, err
 		}
 
-		bytesSent, err := strconv.Atoi(strings.TrimSpace(splitMessage[5]))
+		bytesSent, err := strconv.Atoi(strings.TrimSpace(splitMessage[6]))
 		if err != nil {
 			return nil, err
 		}
 
-		responseTime, err := strconv.ParseFloat(strings.TrimSpace(splitMessage[11]), 64)
+		responseTime, err := strconv.ParseFloat(strings.TrimSpace(splitMessage[12]), 64)
 		if err != nil {
 			return nil, err
 		}
 
-		requestTime, err := strconv.ParseFloat(strings.TrimSpace(splitMessage[12]), 64)
+		requestTime, err := strconv.ParseFloat(strings.TrimSpace(splitMessage[13]), 64)
 		if err != nil {
 			return nil, err
 		}
 
 		parsedMessage["time"] = timestamp
 		parsedMessage["app"] = strings.TrimSpace(splitMessage[1])
-		parsedMessage["status_code"] = strings.TrimSpace(splitMessage[3])
+		parsedMessage["status_code"] = strings.TrimSpace(splitMessage[4])
 		parsedMessage["bytes_sent"] = bytesSent
 		parsedMessage["response_time"] = responseTime
 		parsedMessage["request_time"] = requestTime
